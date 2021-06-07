@@ -47,7 +47,7 @@ RUN echo jpl:asdf | chpasswd
 #  make install
 #======================================================================
 RUN cd /home/jpl \
-  && git clone https://github.com/aws/aws-sdk-cpp.git \
+  && git clone --recurse-submodules https://github.com/aws/aws-sdk-cpp.git \
   && chown -R jpl aws-sdk-cpp
 
 
