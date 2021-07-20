@@ -13,10 +13,17 @@ This makes the docker image, starts it, then attaches to it. You'll be logged in
 If you need it, the user has a very clever password of "asdf". It's ultra-secure :-)
 
 # To Build:
+Once logged in, you can do this:
 
     cd aws-sdk-cpp
     mkdir build
     cd build
-    cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_ONLY="ecr"
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_ONLY="ecr;s3"
     make
-    make install
+
+It will fail during the build.
+
+# Works With Bionic
+If you want to see nearly the same thing, but it works, edit the Dockerfile and change the FROM line to use the bionic build instead of focal. Bionic is Ubuntu 18.04 LTS and focal is 20.04 LTS. This probably means that focal (newer) has a newer version of gcc / g++.
+
+In other words: it builds under bionic and fails under the newer focal version of Ubuntu.

@@ -1,4 +1,4 @@
-FROM       phusion/baseimage:bionic-1.0.0
+FROM       phusion/baseimage:focal-1.0.0
 
 #======================================================================
 # Install standard stuff.
@@ -14,7 +14,6 @@ RUN  apt-get update \
     g++ \
     git \
     libcurl4-openssl-dev \
-    libstdc++-7-dev \
     libssl-dev \
     locales \
     make \
@@ -38,7 +37,6 @@ RUN echo jpl:asdf | chpasswd
 
 #======================================================================
 # Check out the SDK. For the build to succeed, I've done this:
-#  git checkout 1.8.145
 #  cd aws-sdk-cpp
 #  mkdir build
 #  cd build
@@ -50,6 +48,11 @@ RUN cd /home/jpl \
   && git clone --recurse-submodules https://github.com/aws/aws-sdk-cpp.git \
   && chown -R jpl aws-sdk-cpp
 
+#RUN cd /home/jpl/aws-sdk-cpp \
+#  && mkdir build \
+#  && cd build \
+#  && cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_ONLY="ecr;s3" \
+#  && make
 
 
 CMD ["/sbin/my_init"]
